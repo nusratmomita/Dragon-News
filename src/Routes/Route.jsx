@@ -7,12 +7,12 @@ export const router = createBrowserRouter([
         Component: Home
     },
     {
-        path : "/auth",
-        element: <h1>Hello , an auth page</h1>
+        path : "/career",
+        element: <h1>Hello , a career page</h1>
     },
     {
-        path : "/news",
-        element: <h1>Hello , a news page</h1>
+        path : "/about",
+        element: <h1>Hello , an about page</h1>
     },
     {
         path : "/*", // ! to declare error pages
