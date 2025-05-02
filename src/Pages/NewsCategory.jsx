@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { Suspense, useEffect, useState } from 'react';
 import { useLoaderData, useParams } from 'react-router';
 import NewsCard from '../Components/Home/NewsCard';
 
@@ -38,12 +38,13 @@ const NewsCategory = () => {
     return (
         <div className='ml-20 '>
             <h1 className="text-black text-2xl font-bold">Total - {categoryNews.length} News Found</h1>
-
-            <div className='mt-4 grid grid-cols-1 mr-10'>
-                {
-                    categoryNews.map((news) => <NewsCard key={news.id} news={news}></NewsCard>)
-                }
-            </div>
+            <Suspense fallback={<h1>Data coming...</h1>}>
+                <div className='mt-4 grid grid-cols-1 mr-10'>
+                    {
+                        categoryNews.map((news) => <NewsCard key={news.id} news={news}></NewsCard>)
+                    }
+                </div>           
+            </Suspense>
         </div>
     );
 };

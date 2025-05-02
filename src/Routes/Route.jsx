@@ -4,6 +4,7 @@ import Home from "../Components/Home/Home";
 import NewsCategory from "../Pages/NewsCategory";
 import { Suspense } from "react";
 
+
   
 export const router = createBrowserRouter([
     {
@@ -17,7 +18,7 @@ export const router = createBrowserRouter([
             },
             {
                 path : "/category/:id",
-                Component: NewsCategory,
+                Component: NewsCategory,   
                 loader: () => fetch("/news.json")
             },{
                 path : "/career",
