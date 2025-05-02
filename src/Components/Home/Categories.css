@@ -1,0 +1,4 @@
+.categories a.active{
+    background-color: darkgray;
+    border-radius: 20px;
+}

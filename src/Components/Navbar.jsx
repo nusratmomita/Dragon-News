@@ -8,14 +8,16 @@ const Navbar = () => {
         <li><NavLink to='/about'>About</NavLink></li>
         <li><NavLink to='/career'>Career</NavLink></li>
     </>
+
+    
     return (
         <div className='flex justify-between items-center'>
             <div className='left-side'></div>
             <div>
                 <ul className='ml-40 flex gap-3 justify-center items-center text-accent font-semibold text-xl'>
-                    {
-                        links
-                    }
+                {
+                    links
+                }
                 </ul>
                
             </div>
