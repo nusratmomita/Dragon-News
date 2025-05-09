@@ -66,6 +66,8 @@ const NewsCard = ({ news }) => {
                         <div className="p-5 flex flex-col">
                             <p className="text-black font-bold">{details}</p>
                             <button onClick={()=>handleReadMoreBtn()} className="btn mt-5 bg-red-400 text-white hover:bg-red-800">Show Less </button>
+                            <button onClick={()=>handleReadMoreBtn()} className="btn mt-5 bg-purple-600 text-white hover:bg-purple-800 w-1/2 mx-auto">Learn More about this news </button>
+
                         </div>
             }
         </div>

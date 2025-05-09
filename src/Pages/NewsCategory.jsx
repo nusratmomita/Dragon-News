@@ -11,6 +11,8 @@ const NewsCategory = () => {
     // setting an array to show the news on the UI
     const [categoryNews , setCategoryNews] = useState([]);
 
+    // to add loading spinner
+    const [loading , setLoading] = useState(false);
 
     // ! good way 
     // const news = newsData.filter((singleNews) => singleNews.category_id == id)
@@ -33,18 +35,22 @@ const NewsCategory = () => {
             // console.log(news)
             setCategoryNews(news);
         }
+        setLoading(true);
     },[newsData ,id])
 
     return (
         <div className='ml-20 '>
             <h1 className="text-black text-2xl font-bold">Total - {categoryNews.length} News Found</h1>
-            <Suspense fallback={<h1>Data coming...</h1>}>
-                <div className='mt-4 grid grid-cols-1 mr-10'>
-                    {
-                        categoryNews.map((news) => <NewsCard key={news.id} news={news}></NewsCard>)
-                    }
-                </div>           
-            </Suspense>
+            
+            {
+                loading && <Suspense fallback={<span className="loading loading-dots loading-6xl"></span>}></Suspense>
+            }
+            <div className='mt-4 grid grid-cols-1 mr-10'>
+                {
+                    categoryNews.map((news) => <NewsCard key={news.id} news={news}></NewsCard>)
+                }
+            </div>           
+        
         </div>
     );
 };

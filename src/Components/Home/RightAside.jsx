@@ -3,7 +3,7 @@ import { FaFacebook, FaInstagram, FaTwitter } from "react-icons/fa";
 import swimmingImage from '../../assets/swimming.png'
 import classImage from '../../assets/class.png'
 import playgroundImage from '../../assets/playground.png'
-import logoBottom from '../../assets/bg.png'
+
 const RightAside = () => {
   return (
     <div className="space-y-6">
@@ -39,7 +39,7 @@ const RightAside = () => {
           </div>
         </div>
 
-        <img src={logoBottom} alt="" />
+        
     </div>
   );
 };
