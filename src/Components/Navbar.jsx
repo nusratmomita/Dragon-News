@@ -33,9 +33,8 @@ const Navbar = () => {
         </ul>
       </div>
 
-      <h1>Hi , {user && user.name}</h1>
-
       <div className="mr-20 login-btn flex gap-3 items-center">
+        <h1 className="text-lg font-bold text-red-600 p-2 rounded-2xl border-2 border-red-400">Hi , {user ? `${user.displayName===null ? `${user.email}`: `${user.displayName}`}` : "user"}</h1>
         <CgProfile size={35}></CgProfile>
         <button
           onClick={() => navigate("/auth/login")}
