@@ -6,6 +6,7 @@ import { Suspense } from "react";
 import Login from "../Pages/Login/Login";
 import Register from "../Pages/Register/Register";
 import AuthLayout from "../Layout/AuthLayout";
+import NewsDetails from "../Pages/NewsDetails/NewsDetails";
 
 
   
@@ -49,8 +50,10 @@ export const router = createBrowserRouter([
         ]
     },
     {
-        path: "/news",
-        element: <h1>News route</h1>
+        path: "/news-details/:id",
+        element: <NewsDetails/>,
+        loader: () => fetch("/news.json")
+
     },
     {
         path : "/*", // ! to declare error pages

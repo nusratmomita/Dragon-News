@@ -1,16 +1,18 @@
 import { Suspense, useState } from "react";
 import { FaEye, FaStar, FaShareAlt, FaRegBookmark } from "react-icons/fa";
+import { useNavigate } from "react-router";
 
 const NewsCard = ({ news }) => {
 
+  const navigate = useNavigate();
   const [readBtn , setReadMore] = useState(false);
-//   const [btnText , setBtnText] = useState('');
 
   const handleReadMoreBtn = () => {
     setReadMore(!readBtn);
   }
 
-  const { title, author, thumbnail_url, details, rating, total_view } = news;
+
+  const { id , title, author, thumbnail_url, details, rating, total_view } = news;
 
   const formattedDate = new Date(
     news.author.published_date
@@ -66,8 +68,8 @@ const NewsCard = ({ news }) => {
                         <div className="p-5 flex flex-col">
                             <p className="text-black font-bold">{details}</p>
                             <button onClick={()=>handleReadMoreBtn()} className="btn mt-5 bg-red-400 text-white hover:bg-red-800">Show Less </button>
-                            <button onClick={()=>handleReadMoreBtn()} className="btn mt-5 bg-purple-600 text-white hover:bg-purple-800 w-1/2 mx-auto">Learn More about this news </button>
 
+                            <button onClick={()=>navigate(`/news-details/${id}`)} className="btn mt-5 bg-purple-600 text-white hover:bg-purple-800 w-1/2 mx-auto">Learn More about this news </button>
                         </div>
             }
         </div>
