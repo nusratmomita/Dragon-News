@@ -1,10 +1,11 @@
 import React, { useContext } from "react";
-import { NavLink, useNavigate } from "react-router";
+import { NavLink, useLocation, useNavigate } from "react-router";
 import { AuthContext } from "../../Provider/AuthProvider";
 import { toast, ToastContainer } from "react-toastify";
 
 const Login = () => {
   const navigate = useNavigate();
+  const location = useLocation();
 
   const { Login } = useContext(AuthContext);
 
@@ -19,6 +20,7 @@ const Login = () => {
     Login(email, password)
       .then(() => {
             toast.success("You have successfully logged in!");
+            navigate(`${location.state ? location.state : "/"}`)
             setTimeout(()=>{
                 navigate("/");
             },2000)
