@@ -9,8 +9,10 @@ const auth = getAuth(app)
 
 
 const AuthProvider = ({children}) => {
+    // * here we used loading to hold on to the user for PrivateRoute.jsx [see the code] 
     const [user , setUser] = useState(null);
-    // console.log(user)
+    const [loading , setLoading] = useState(true);
+    console.log(user ,loading)
 
     // creating a new user using email and password
     const createUser = (email,password) => {
@@ -31,6 +33,7 @@ const AuthProvider = ({children}) => {
     useEffect(()=>{
         const unsubscribe = onAuthStateChanged(auth , (currentUser)=>{
             setUser(currentUser);
+            setLoading(false);
         })
 
         return ()=>{
@@ -42,6 +45,8 @@ const AuthProvider = ({children}) => {
         createUser,
         Login,
         LogoutUser,
+        loading,
+        setLoading,
         user,
         setUser
     }

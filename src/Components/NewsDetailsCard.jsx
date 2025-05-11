@@ -17,8 +17,8 @@ const NewsDetailsCard = () => {
             <p className='text-xl text-gray-800'>{details}</p>
             <h1 className='flex gap-1 text-xl font-bold'>Current Rating: {rating.number}<FaRegStar size={25} color='red'></FaRegStar></h1>
             <h4 className='text-xl font-medium'>Total View: {total_view}</h4>
-            <h2>{others.is_trending ? <h1 className='text-white font-bold bg-green-600 w-[90px] p-2 rounded-xl'>Trending</h1>:""}</h2>
-            <h2 className='text-xl font-medium'>Tags: {tags.map(tag => <h1 className='inline-block ml-3'>{tag}</h1>)}</h2>
+            <h2>{others.is_trending ? <span className='text-white font-bold bg-green-600 w-[90px] p-2 rounded-xl'>Trending</span>:""}</h2>
+            <h2 className='text-xl font-medium'>Tags: {tags.map((tag,index) => <span key={index} className='inline-block ml-3'>{tag}</span> )}</h2>
             <Link className="btn mt-5 bg-green-600 text-white hover:bg-green-700 w-[250px] mx-auto" to={`/category/${category_id}`}>Go back to Category</Link>
         </div>
     );
