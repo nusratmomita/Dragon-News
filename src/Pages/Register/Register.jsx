@@ -1,11 +1,14 @@
-import React, { useContext } from 'react';
-import { NavLink } from 'react-router';
+import React, { useContext, useState } from 'react';
+import { NavLink, useNavigate } from 'react-router';
 import { toast, ToastContainer } from 'react-toastify';
 import { AuthContext } from '../../Provider/AuthProvider';
 
 const Register = () => {
 
-    const {createUser , setUser} = useContext(AuthContext);
+    const navigate = useNavigate()
+    const {createUser , setUser , updateUser} = useContext(AuthContext);
+    // just to show error in the form
+    const [nameError , setNameError] = useState('');
 
     const handleRegister = (e) => {
         e.preventDefault();
@@ -17,7 +20,10 @@ const Register = () => {
         const password = formTarget.password.value;
 
         // console.log(name ,email , photoURL , password)
-
+        
+        if(name.length < 5){
+            setNameError("Name should be at least 5 characters long")
+        }
         if(!name || !email || !photoURL || !password){
             toast.error("You must fill all the fields to continue")
             return
@@ -42,9 +48,17 @@ const Register = () => {
         createUser(email,password)
         .then((result)=>{
             const user = result.user;
-            // console.log(user)
-            setUser(user)
-            toast.success("You have successfully created a new account!");
+            console.log(user)
+            updateUser({displayName:name , photoURL: photoURL})
+            .then(()=> {
+                setUser({...user,displayName:name , photoURL: photoURL})
+                toast.success("You have successfully created a new account!");
+                navigate('/');
+            })
+            .catch((error)=>{
+                toast.error(error);
+                setUser(user)
+            })
         })
         .catch((error)=>{
             toast.error(error);
@@ -61,7 +75,9 @@ const Register = () => {
                     <form onSubmit={handleRegister} className="fieldset">
                         <label className="label font-bold text-[#403F3F]">Name</label>
                         <input type="text" name="name" className="input" placeholder="Name" />
-
+                        {
+                            nameError && <p className='text-red-700'>{nameError}</p>
+                        }
                         <label className="label font-bold text-[#403F3F]">Email Address</label>
                         <input type="email" name="email" className="input" placeholder="Email" />
 

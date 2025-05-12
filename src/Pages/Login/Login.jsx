@@ -20,9 +20,8 @@ const Login = () => {
     Login(email, password)
       .then(() => {
             toast.success("You have successfully logged in!");
-            navigate(`${location.state ? location.state : "/"}`)
             setTimeout(()=>{
-                navigate("/");
+              navigate(`${location.state ? location.state : "/"}`)
             },2000)
       })
       .catch(() => {

@@ -46,7 +46,9 @@ const Navbar = () => {
 
       <div className="mr-20 login-btn flex gap-3 items-center">
         <h1 className="text-lg font-bold text-red-600 p-2 rounded-2xl border-2 border-red-400">Hi , {user ? `${user.displayName===null ? `${user.email}`: `${user.displayName}`}` : "user"}</h1>
-        <CgProfile size={35}></CgProfile>
+        {
+          user && user?.email ? <img className="w-10 h-10 border-2 rounded-full"src={user.photoURL} alt="" /> : <CgProfile size={35}></CgProfile>
+        }
 
         {
           user ? <button onClick={handleLogout} className="btn btn-primary w-25">Logout</button>

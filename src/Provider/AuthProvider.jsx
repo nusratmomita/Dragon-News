@@ -1,5 +1,5 @@
 import React, { createContext, useEffect, useState } from 'react';
-import { getAuth , createUserWithEmailAndPassword, onAuthStateChanged, signOut, signInWithEmailAndPassword} from "firebase/auth";
+import { getAuth , createUserWithEmailAndPassword, onAuthStateChanged, signOut, signInWithEmailAndPassword, updateProfile} from "firebase/auth";
 import { app } from '../Firebase/firebase';
 
 
@@ -12,17 +12,21 @@ const AuthProvider = ({children}) => {
     // * here we used loading to hold on to the user for PrivateRoute.jsx [see the code] 
     const [user , setUser] = useState(null);
     const [loading , setLoading] = useState(true);
-    console.log(user ,loading)
+    // console.log(user ,loading)
 
     // creating a new user using email and password
     const createUser = (email,password) => {
         return createUserWithEmailAndPassword(auth , email , password);
     }
 
-
     // handle Login functionality
     const Login = (email , password) => {
         return signInWithEmailAndPassword(auth , email , password)
+    }
+
+    // update the user
+    const updateUser = (updatedData) => {
+        return updateProfile(auth.currentUser,updatedData)
     }
 
     // handle logout functionality
@@ -47,6 +51,7 @@ const AuthProvider = ({children}) => {
         LogoutUser,
         loading,
         setLoading,
+        updateUser,
         user,
         setUser
     }
